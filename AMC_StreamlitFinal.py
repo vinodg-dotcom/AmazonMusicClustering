@@ -5,18 +5,15 @@ import os
 # Set page layout to wide
 st.set_page_config(layout="wide", page_title="Music Clustering Dashboard")
 
-# --- SIDEBAR NAVIGATION ---
 st.sidebar.title("🎮 Navigation")
 view_mode = st.sidebar.selectbox(
     "Select View Mode:", ["Saved Analysis Portfolio", "Live Cluster Explorer"]
 )
 
-# Load Dataset Function
 @st.cache_data
 def load_data():
     return pd.read_csv("https://github.com/vinodg-dotcom/AmazonMusicClustering/blob/main/final_clustered_music_dataset.csv?raw=true")
 
-# Try to load the dataset or display an error if it hasn't been exported yet
 try:
     df = load_data()
 except Exception as e:
@@ -55,7 +52,6 @@ if view_mode == "Saved Analysis Portfolio":
 
     image_filename = graph_map[selected_graph]
 
-    # Verify asset existence before rendering to prevent generic crashes
     if os.path.exists(image_filename):
         st.image(image_filename, use_container_width=True)
     else:
@@ -72,7 +68,6 @@ elif view_mode == "Live Cluster Explorer":
     cluster_options = sorted(df["Cluster_Label"].unique())
     selected_cluster = st.selectbox("Select Music Cluster:", cluster_options, format_func=lambda x: f"Cluster {x}")
 
-    # Dynamic textual profile narratives updated for your 4-cluster logic
     cluster_summaries = {
         0: """
         ### **Cluster 0: Intimate Acoustic, Classical & Ambient Soundscapes**
@@ -100,11 +95,9 @@ elif view_mode == "Live Cluster Explorer":
         """,
     }
 
-    # Layout: Radar Blueprint Graphic on left, Text profile breakdown on right
     col_img, col_txt = st.columns([1, 1])
 
     with col_img:
-        # Match filenames generated inside Cell 12 loop: music_radar_cluster_0.png to music_radar_cluster_3.png
         radar_filename = f"music_radar_cluster_{selected_cluster}.png"
         if os.path.exists(radar_filename):
             st.image(radar_filename, caption=f"Musical DNA Radar: Cluster {selected_cluster}", use_container_width=True)
@@ -114,17 +107,14 @@ elif view_mode == "Live Cluster Explorer":
     with col_txt:
         st.info(cluster_summaries[selected_cluster])
 
-        # KPI Metric Calculations for the target cluster
         filtered_df = df[df["Cluster_Label"] == selected_cluster]
         
         stat_col1, stat_col2 = st.columns(2)
         stat_col1.metric("Total Songs Assigned", f"{len(filtered_df):,}")
         stat_col2.metric("Market Track Share", f"{(len(filtered_df) / len(df) * 100):.1f}%")
 
-    # Data Filter Table Interface
-    st.subheader(f"🎵 Sample Tracks in Cluster {selected_cluster}")
+    st.subheader(f"Sample Tracks in Cluster {selected_cluster}")
     
-    # Text input search box to filter tracks interactively
     search_query = st.text_input("Search tracks by Song Title or Artist Name:", "")
     
     display_df = filtered_df[["name_song", "name_artists", "genres", "release_date"]].copy()
