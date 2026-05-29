@@ -70,13 +70,13 @@ elif view_mode == "Live Cluster Explorer":
 
     cluster_summaries = {
         0: """
-        ### **Cluster 0: Intimate Acoustic, Classical & Ambient Soundscapes**
+        ### **Cluster 0: Classical Soundscapes**
         * **Acousticness:** ⬆️ **Very High** *(Predominant feature)*
         * **Energy / Loudness:** ⬇️ **Low** *(Soft, mellow dynamics)*
         * **Instrumentalness:** ⬆️ **Elevated** *(Strong representation of instrumental tracks)*
         """,
         1: """
-        ### **Cluster 1: Commercial Pop, High-Energy Electronic & Beats**
+        ### **Cluster 1: Commercial Pop**
         * **Energy & Danceability:** ⬆️ **High Peaks** *(Optimized for clubs/radio)*
         * **Loudness:** ⚡ **High Volume / Compressed**
         * **Acoustic / Instrumental:** ⬇️ **Near Zero** *(Synthetic or heavily produced)*
@@ -88,7 +88,7 @@ elif view_mode == "Live Cluster Explorer":
         * **Instrumentalness:** ⬇️ **Zero** *(No lingering arrangements)*
         """,
         3: """
-        ### **Cluster 3: Vibrant, Expressive & Melodic Grooves**
+        ### **Cluster 3: Melodic Grooves**
         * **Valence (Positivity):** ⬆️ **Highest Peak** *(Happy, upbeat tracks)*
         * **Danceability:** ⬆️ **Strong** *(Rhythmic and groovy rhythm sections)*
         * **Acousticness:** ⬇️ **Low** *(Primarily modern electronic/amplified instrumentation)*
